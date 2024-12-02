@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Ground
+  - fly
   layers:
   - Default
   - TransparentFX

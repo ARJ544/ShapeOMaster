@@ -8,6 +8,7 @@ public class ShopPanel_btn_manager : MonoBehaviour
         {
             DataManager.Instance.AddCoins(50);
             DataManager.Instance.SpendGems(1);
+            //DataManager.Instance.SaveData();
         }
         else
         {
@@ -21,6 +22,7 @@ public class ShopPanel_btn_manager : MonoBehaviour
         {
             DataManager.Instance.AddCoins(100);
             DataManager.Instance.SpendGems(2);
+            //DataManager.Instance.SaveData();
         }
         else
         {
@@ -34,6 +36,7 @@ public class ShopPanel_btn_manager : MonoBehaviour
         {
             DataManager.Instance.AddCoins(150);
             DataManager.Instance.SpendGems(3);
+            //DataManager.Instance.SaveData();
         }
         else
         {
@@ -47,6 +50,7 @@ public class ShopPanel_btn_manager : MonoBehaviour
         {
             DataManager.Instance.AddGems(1);
             DataManager.Instance.SpendCoins(200);
+            //DataManager.Instance.SaveData();
         }
         else
         {
@@ -60,6 +64,7 @@ public class ShopPanel_btn_manager : MonoBehaviour
         {
             DataManager.Instance.AddGems(2);
             DataManager.Instance.SpendCoins(400);
+            //DataManager.Instance.SaveData();
         }
         else
         {
@@ -73,6 +78,7 @@ public class ShopPanel_btn_manager : MonoBehaviour
         {
             DataManager.Instance.AddGems(3);
             DataManager.Instance.SpendCoins(600);
+            //DataManager.Instance.SaveData();
         }
         else
         {

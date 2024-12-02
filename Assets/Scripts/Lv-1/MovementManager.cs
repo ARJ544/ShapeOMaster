@@ -1,34 +1,43 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Lv1_btn_manager : MonoBehaviour
 {
-    public Rigidbody2D circle_rb;  // Corrected the variable name
-    public Rigidbody2D square_rb;
-    public Rigidbody2D triangle_rb;
-    public float jumpvalue = 7f;
-    private float move;
-    private float currentSpeed;
-    private bool currentPlayerIsOnGround = true;  // Flag to check if the player is on the ground
+    //public Button JumpBtn;
+    [Header("Game Objects")]
+    [SerializeField] public GameObject circle;
+    [SerializeField] public GameObject triangle;
+    [SerializeField] public GameObject square;
+    [SerializeField] private GameObject currentActiveSprite;
 
-    // References to the sprite GameObjects
-    public GameObject circle;
-    public GameObject triangle;
-    public GameObject square;
 
-    // Speeds for each shape
-    public float circleSpeed = 25f;
-    public float triangleSpeed = 15f;
-    public float squareSpeed = 10f;
+    [Header("RigidBody")]
+    [SerializeField] public Rigidbody2D circle_rb;  // Corrected the variable name
+    [SerializeField] public Rigidbody2D square_rb;
+    [SerializeField] public Rigidbody2D triangle_rb;
+    [SerializeField] private Rigidbody2D currentActiveRb;
 
-    private GameObject currentActiveSprite; // The currently active sprite
-    private Rigidbody2D currentActiveRb;    // The current active Rigidbody2D
+
+    [Header("Float")]
+    [SerializeField] public float jumpvalue = 7f;
+    [SerializeField] public float circleSpeed = 25f;
+    [SerializeField] public float triangleSpeed = 15f;
+    [SerializeField] public float squareSpeed = 10f;
+    [SerializeField] private float move;
+    [SerializeField] private float currentSpeed;
+
+
+    [Header("Bool")]
+    [SerializeField] public bool currentPlayerIsOnGround = true;
+    [SerializeField] public bool currentPlayerIsFacingRight = true;
+
 
     void Start()
     {
         ActivateSprite(circle, circleSpeed);
 
         // Get Rigidbody2D components for each sprite
-        circle_rb = circle.GetComponent<Rigidbody2D>();  // Use 'circle_rb' here
+        circle_rb = circle.GetComponent<Rigidbody2D>(); 
         triangle_rb = triangle.GetComponent<Rigidbody2D>();
         square_rb = square.GetComponent<Rigidbody2D>();
 
@@ -38,15 +47,39 @@ public class Lv1_btn_manager : MonoBehaviour
 
     void Update()
     {
-        // Capture horizontal movement input
+        // Get input
         move = SimpleInput.GetAxis("Horizontal");
+
+        // Check if the character needs to flip direction
+        if (move > 0 && !currentPlayerIsFacingRight)
+        {
+            Flip(); // Face right
+        }
+        else if (move < 0 && currentPlayerIsFacingRight)
+        {
+            Flip(); // Face left
+        }
     }
 
     private void FixedUpdate()
     {
-        // Move the parent GameObject with the speed of the current active sprite
-        transform.position += new Vector3(move, 0f, 0f) * currentSpeed * Time.fixedDeltaTime;
+        // Apply horizontal movement in world space
+        Vector3 movement = new Vector3(move, 0f, 0f) * currentSpeed * Time.fixedDeltaTime;
+        transform.Translate(movement, Space.World);
     }
+
+    private void Flip()
+    {
+        currentPlayerIsFacingRight = !currentPlayerIsFacingRight; // Toggle direction
+
+        // Flip only the visual sprite without changing position
+        Vector3 scale = currentActiveSprite.transform.localScale;
+        scale.x *= -1; // Invert X scale
+        currentActiveSprite.transform.localScale = scale;
+    }
+
+
+
 
     // Function to activate a specific sprite and set its speed
     public void ActivateSprite(GameObject spriteToActivate, float speed)
@@ -115,18 +148,21 @@ public class Lv1_btn_manager : MonoBehaviour
             // Access current active Rigidbody2D velocity and apply jump force
             Vector2 velocity = currentActiveRb.linearVelocity;  // Use '.velocity' instead of '.linearVelocity'
             velocity.y = jumpvalue;  // Set the Y velocity to simulate jumping
-            currentActiveRb.linearVelocity = velocity;  // Apply the modified velocity
+            currentActiveRb.linearVelocity = velocity;
+            // Apply the modified velocity
 
-            currentPlayerIsOnGround = false;  // Set the player state to not on the ground
+            //currentPlayerIsOnGround = false;  // Set the player state to not on the ground
+
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // When the object collides with an object tagged as "Ground", set the player state to on the ground
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground") // Check if the collided GameObject is the ground
         {
+            
             currentPlayerIsOnGround = true;
+            Debug.Log("On Ground");
         }
     }
 
@@ -136,6 +172,7 @@ public class Lv1_btn_manager : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             currentPlayerIsOnGround = false;
+            Debug.Log("no Ground");
         }
     }
 }

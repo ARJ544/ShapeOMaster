@@ -5,12 +5,12 @@ public class DataManager : MonoBehaviour
     public static DataManager Instance { get; private set; } // Singleton instance
 
     [Header(" Data ")]
-    private int coins = 50;
+    private int coins = 100;
     private int gems = 2;
 
     private void Awake()
     {
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
         if (Instance == null)
         {
             Instance = this;
@@ -26,12 +26,12 @@ public class DataManager : MonoBehaviour
     }
 
 
-    private void LoadData()
+    public void LoadData()
     {
         // Check if PlayerPrefs keys exist; if not, set default values
         if (!PlayerPrefs.HasKey("coins"))
         {
-            coins = 50; // Default value for coins
+            coins = 100; // Default value for coins
             PlayerPrefs.SetInt("coins", coins); // Save the default value
             Debug.Log("Coins key not found. Setting default value: 50");
         }
@@ -58,7 +58,7 @@ public class DataManager : MonoBehaviour
     }
 
 
-    private void SaveData()
+    public void SaveData()
     {
         PlayerPrefs.SetInt("coins", coins);
         PlayerPrefs.SetInt("gems", gems);

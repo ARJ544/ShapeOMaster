@@ -63,6 +63,7 @@ public class MainMenuButtonManager : MonoBehaviour
 
     void Start()
     {
+        //DataManager.Instance.LoadData();
         if (coins != null && gems != null && coins2 != null && gems2 != null)
         {
             coins.text = DataManager.Instance.GetCoins().ToString();
