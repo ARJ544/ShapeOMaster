@@ -3,20 +3,26 @@ using UnityEngine.UI;
 
 public class Lv1_btn_manager : MonoBehaviour
 {
-    //public Button JumpBtn;
+    [Header("Button")]
+    [SerializeField] public Button shootBtn;
+
     [Header("Game Objects")]
     [SerializeField] public GameObject circle;
     [SerializeField] public GameObject triangle;
     [SerializeField] public GameObject square;
     [SerializeField] private GameObject currentActiveSprite;
 
+    [Header("Animator")]
+    [SerializeField] public Animator circle_animator;
+    [SerializeField] public Animator square_animator;
+    [SerializeField] public Animator triangle_animator;
+    [SerializeField] private Animator currentActiveSprite_animator;
 
     [Header("RigidBody")]
-    [SerializeField] public Rigidbody2D circle_rb;  // Corrected the variable name
+    [SerializeField] public Rigidbody2D circle_rb;
     [SerializeField] public Rigidbody2D square_rb;
     [SerializeField] public Rigidbody2D triangle_rb;
     [SerializeField] private Rigidbody2D currentActiveRb;
-
 
     [Header("Float")]
     [SerializeField] public float jumpvalue = 7f;
@@ -26,23 +32,27 @@ public class Lv1_btn_manager : MonoBehaviour
     [SerializeField] private float move;
     [SerializeField] private float currentSpeed;
 
-
     [Header("Bool")]
     [SerializeField] public bool currentPlayerIsOnGround = true;
     [SerializeField] public bool currentPlayerIsFacingRight = true;
 
+    
 
     void Start()
     {
         ActivateSprite(circle, circleSpeed);
 
         // Get Rigidbody2D components for each sprite
-        circle_rb = circle.GetComponent<Rigidbody2D>(); 
+        circle_rb = circle.GetComponent<Rigidbody2D>();
         triangle_rb = triangle.GetComponent<Rigidbody2D>();
         square_rb = square.GetComponent<Rigidbody2D>();
 
+
         // Set the initial Rigidbody2D reference to the active sprite's Rigidbody2D
         currentActiveRb = circle_rb;
+
+        // Initialize the animator for the active sprite
+        currentActiveSprite_animator = circle_animator;
     }
 
     void Update()
@@ -53,11 +63,39 @@ public class Lv1_btn_manager : MonoBehaviour
         // Check if the character needs to flip direction
         if (move > 0 && !currentPlayerIsFacingRight)
         {
-            Flip(); // Face right
+            Flip(circle); // Face right
+            Flip(square); // Face right
+            Flip(triangle); // Face right
         }
         else if (move < 0 && currentPlayerIsFacingRight)
         {
-            Flip(); // Face left
+            Flip(circle);
+            Flip(square);
+            Flip(triangle); // Face left
+        }
+
+        //Running Animation
+        if (Mathf.Abs(move) > 0.1f)
+        {
+            currentActiveSprite_animator.SetFloat("Speed", 1f);//Animation is playing
+
+            Transform parentTransform = currentActiveSprite.transform;  // Replace 'parentGameObject' with your GameObject
+            foreach (Transform child in parentTransform)
+            {
+                
+                child.gameObject.SetActive(false);  
+            }
+        }
+        else
+        {
+            currentActiveSprite_animator.SetFloat("Speed", 0f);//Animation stops
+
+            Transform parentTransform = currentActiveSprite.transform;  // Replace 'parentGameObject' with your GameObject
+            foreach (Transform child in parentTransform)
+            {
+
+                child.gameObject.SetActive(true);
+            }
         }
     }
 
@@ -68,17 +106,25 @@ public class Lv1_btn_manager : MonoBehaviour
         transform.Translate(movement, Space.World);
     }
 
-    private void Flip()
+    private void Flip(GameObject sprite)
     {
-        currentPlayerIsFacingRight = !currentPlayerIsFacingRight; // Toggle direction
+        if (sprite == null)
+        {
+            Debug.LogWarning("Sprite to flip is null!");
+            return;
+        }
 
-        // Flip only the visual sprite without changing position
-        Vector3 scale = currentActiveSprite.transform.localScale;
+        // Flip the visual sprite by inverting its local scale on the X axis
+        Vector3 scale = sprite.transform.localScale;
         scale.x *= -1; // Invert X scale
-        currentActiveSprite.transform.localScale = scale;
+        sprite.transform.localScale = scale;
+
+        // Toggle the facing direction of the character if the flipped sprite is the current active one
+        if (sprite == currentActiveSprite)
+        {
+            currentPlayerIsFacingRight = !currentPlayerIsFacingRight;
+        }
     }
-
-
 
 
     // Function to activate a specific sprite and set its speed
@@ -113,14 +159,20 @@ public class Lv1_btn_manager : MonoBehaviour
         if (spriteToActivate == circle)
         {
             currentActiveRb = circle_rb;
+            currentActiveSprite_animator = circle_animator;
+            shootBtn.interactable = false;
         }
         else if (spriteToActivate == triangle)
         {
             currentActiveRb = triangle_rb;
+            currentActiveSprite_animator = triangle_animator;
+            shootBtn.interactable = true;
         }
         else if (spriteToActivate == square)
         {
             currentActiveRb = square_rb;
+            currentActiveSprite_animator = square_animator;
+            shootBtn.interactable = false;
         }
     }
 
@@ -146,21 +198,18 @@ public class Lv1_btn_manager : MonoBehaviour
         if (currentPlayerIsOnGround)
         {
             // Access current active Rigidbody2D velocity and apply jump force
-            Vector2 velocity = currentActiveRb.linearVelocity;  // Use '.velocity' instead of '.linearVelocity'
-            velocity.y = jumpvalue;  // Set the Y velocity to simulate jumping
+            Vector2 velocity = currentActiveRb.linearVelocity;
+            velocity.y = jumpvalue; // Set the Y velocity to simulate jumping
             currentActiveRb.linearVelocity = velocity;
-            // Apply the modified velocity
 
-            //currentPlayerIsOnGround = false;  // Set the player state to not on the ground
-
+            //currentPlayerIsOnGround = false;
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground") // Check if the collided GameObject is the ground
+        if (collision.gameObject.tag == "Ground")
         {
-            
             currentPlayerIsOnGround = true;
             Debug.Log("On Ground");
         }
@@ -168,11 +217,10 @@ public class Lv1_btn_manager : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        // When the object exits collision with the ground, set the player state to not on the ground
         if (collision.gameObject.tag == "Ground")
         {
             currentPlayerIsOnGround = false;
-            Debug.Log("no Ground");
+            Debug.Log("Not on Ground");
         }
     }
 }
