@@ -74,6 +74,8 @@ public class Lv1_btn_manager : MonoBehaviour
             Flip(triangle); // Face left
         }
 
+        MoveAllSprites(move);
+
         //Running Animation
         if (Mathf.Abs(move) > 0.1f)
         {
@@ -98,6 +100,20 @@ public class Lv1_btn_manager : MonoBehaviour
             }
         }
     }
+
+    private void MoveAllSprites(float moveDirection)
+    {
+        // Get the current X position of the active sprite
+        float currentXPosition = currentActiveSprite.transform.position.x;
+
+        // Apply the movement to all sprites (circle, square, triangle) while keeping the Y position the same
+        circle.transform.position = new Vector3(currentXPosition + moveDirection * currentSpeed * Time.deltaTime, circle.transform.position.y, circle.transform.position.z);
+        triangle.transform.position = new Vector3(currentXPosition + moveDirection * currentSpeed * Time.deltaTime, triangle.transform.position.y, triangle.transform.position.z);
+        square.transform.position = new Vector3(currentXPosition + moveDirection * currentSpeed * Time.deltaTime, square.transform.position.y, square.transform.position.z);
+    }
+
+
+
 
     private void FixedUpdate()
     {
@@ -223,4 +239,5 @@ public class Lv1_btn_manager : MonoBehaviour
             Debug.Log("Not on Ground");
         }
     }
+
 }
