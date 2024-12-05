@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerCollidedWithGreenFlag : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class PlayerCollidedWithGreenFlag : MonoBehaviour
     void Start()
     {
         LevelCompleted_Panel.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     void Update()
@@ -17,13 +19,36 @@ public class PlayerCollidedWithGreenFlag : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            Time.timeScale = 0f;
             LevelCompleted_Panel.SetActive(true);
+
+            if (DataManager.Instance != null)
+            {
+                DataManager.Instance.AddCoins(20);
+                DataManager.Instance.AddGems(1);
+            }
+            else
+            {
+                Debug.LogWarning("DataManager.Instance is null. Ensure it is initialized in the Main Menu.");
+            }
+
             Debug.Log("Player Wins");
         }
     }
 
-    public void closebtn()
+
+    public void Retrybtn()
     {
-        LevelCompleted_Panel.SetActive(false);
+        SceneManager.LoadScene("Lv-1");
+    }
+
+    public void returnToHome()
+    {
+        SceneManager.LoadScene("Main_Menu");
+    }
+
+    public void Nextlevel()
+    {
+        SceneManager.LoadScene("Lv-2");
     }
 }

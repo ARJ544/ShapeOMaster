@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerCollidedWithRedZone : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class PlayerCollidedWithRedZone : MonoBehaviour
     void Start()
     {
         GameOver_Panel.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     // Update is called once per frame
@@ -18,13 +20,19 @@ public class PlayerCollidedWithRedZone : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            Time.timeScale = 0f;
             GameOver_Panel.SetActive(true);
             Debug.Log("Player Game Over");
         }
     }
 
-    public void closebtn()
+    public void Retrybtn()
     {
-        GameOver_Panel.SetActive(false);
+        SceneManager.LoadScene("Lv-1");
+    }
+
+    public void returnToHome()
+    {
+        SceneManager.LoadScene("Main_Menu");
     }
 }
