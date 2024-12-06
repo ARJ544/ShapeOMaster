@@ -1,7 +1,28 @@
 using UnityEngine;
+using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
+    public static Enemy Instance { get; private set; }
+
+    private void Awake()
+    {
+        //PlayerPrefs.DeleteAll();
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            Debug.Log("Enemy.cs Instance created.");
+        }
+        else
+        {
+            Debug.LogWarning("Multiple Enemy.cs instances detected. Destroying duplicate.");
+            Destroy(gameObject);
+        }
+
+    }
+
+    public GameObject enemyreal;
     public int Enemyhealth = 3;
 
     public Animator EnemyAnimator; // Reference to the enemy's Animator
@@ -43,12 +64,15 @@ public class Enemy : MonoBehaviour
             // Calculate the distance between the player and the enemy
             float distanceToPlayer = Vector2.Distance(playerPosition, enemy.position);
 
+            
+
+
             if (distanceToPlayer <= attackRange)
             {
                 // Bool attack animation
                 EnemyAnimator.SetBool("Attack",true);
                 Debug.Log("Enemy is attacking!");
-                return; // Stop moving while attacking
+           
             }
             else
             {
@@ -92,7 +116,15 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log(this.transform.name + "died");
+        StartCoroutine(DieAfterAnimation());
+    }
+
+    private IEnumerator DieAfterAnimation()
+    {
+        EnemyAnimator.SetTrigger("Die");
+
+        yield return new WaitForSeconds(1.301f);
+        Destroy(enemyreal);
     }
 
     private void SetActiveChild()
