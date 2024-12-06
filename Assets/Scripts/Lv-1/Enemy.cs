@@ -2,73 +2,115 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public Transform Playere; // Player's Transform
-    public float SeeingEnemy = 3f; // Detection range
+    public int Enemyhealth = 3;
+
+    public Animator EnemyAnimator; // Reference to the enemy's Animator
+
+    public Transform Playere; // Player's Transform (Parent)
+    public Transform enemy; // Enemy's Transform
+    public float SeeingEnemy = 28f; // Detection range
     public LayerMask attackLayer; // Layer to detect the player
     public float Speed = 3f; // Movement speed
-    private bool facingLeft = true; // To track which direction the enemy is facing
+    public float attackRange = 6f; // Range to trigger attack animation
     private bool isChasingPlayer = false; // Track if the enemy is chasing the player
 
-    public Transform DetectPoint; // Detection point for patrolling
-    public float Distance; // Distance for detecting edges
-    public LayerMask targetLayer; // Layer for ground detection
+    // References to player's child objects (circle, square, and triangle)
+    public Transform circleChild;
+    public Transform squareChild;
+    public Transform triangleChild;
+
+    private Transform currentActiveChild; // The active child of the player (circle, square, or triangle)
 
     void Update()
     {
+        // Automatically determine which sprite is active
+        SetActiveChild();
+
+        // Detect if the player is within range
+        Collider2D ComeNearEnemy = Physics2D.OverlapCircle(transform.position, SeeingEnemy, attackLayer);
+
+        if (ComeNearEnemy != null && !isChasingPlayer) // Player is in range
+        {
+            isChasingPlayer = true; // Start chasing the player
+            Debug.Log("Player detected! Starting chase...");
+        }
+
         if (isChasingPlayer)
         {
-            // Calculate direction toward the player
-            Vector2 direction = (Playere.position - transform.position).normalized;
+            // Use the active child's position for chasing logic
+            Vector2 playerPosition = currentActiveChild.position;
 
-            // Move toward the player
-            transform.Translate(new Vector2(direction.x, 0f) * Speed * Time.deltaTime);
+            // Calculate the distance between the player and the enemy
+            float distanceToPlayer = Vector2.Distance(playerPosition, enemy.position);
 
-            // Flip the enemy to face the player
-            if (Playere.position.x > transform.position.x && facingLeft)
+            if (distanceToPlayer <= attackRange)
             {
-                transform.eulerAngles = new Vector3(0f, 0f, 0f); // Face right
-                facingLeft = false;
-            }
-            else if (Playere.position.x < transform.position.x && !facingLeft)
-            {
-                transform.eulerAngles = new Vector3(0f, -180f, 0f); // Face left
-                facingLeft = true;
-            }
-        }
-        else
-        {
-            // Detect if the player is within range
-            Collider2D ComeNearEnemy = Physics2D.OverlapCircle(transform.position, SeeingEnemy, attackLayer);
-
-            if (ComeNearEnemy != null) // Player is in range
-            {
-                isChasingPlayer = true; // Switch to chasing the player
-                Debug.Log("Player detected! Starting chase...");
+                // Bool attack animation
+                EnemyAnimator.SetBool("Attack",true);
+                Debug.Log("Enemy is attacking!");
+                return; // Stop moving while attacking
             }
             else
             {
-                // Patrolling logic
-                transform.Translate(Vector2.left * Time.deltaTime * Speed);
-
-                RaycastHit2D collInfo = Physics2D.Raycast(DetectPoint.position, Vector2.down, Distance, targetLayer);
-
-                if (collInfo.collider == null) // Flip when there's no ground
-                {
-                    if (facingLeft)
-                    {
-                        transform.eulerAngles = new Vector3(0f, -180f, 0f);
-                        facingLeft = false;
-                    }
-                    else
-                    {
-                        transform.eulerAngles = new Vector3(0f, 0f, 0f);
-                        facingLeft = true;
-                    }
-                }
+                EnemyAnimator.SetBool("Attack", false);
+                Debug.Log("Enemy is Moving Towards Player!");
             }
+
+            // Check if player is to the right or left of the enemy
+            if (playerPosition.x > enemy.position.x)
+            {
+                // Move enemy right
+                enemy.position = new Vector2(enemy.position.x + Speed * Time.deltaTime, enemy.position.y);
+
+                // Flip to face the player (right)
+                enemy.eulerAngles = new Vector3(0f, -180f, 0f); // Face right
+            }
+            else if (playerPosition.x < enemy.position.x)
+            {
+                // Move enemy left
+                enemy.position = new Vector2(enemy.position.x - Speed * Time.deltaTime, enemy.position.y);
+
+                // Flip to face the player (left)
+                enemy.eulerAngles = new Vector3(0f, 0f, 0f); // Face left
+            }
+        }
+
+        if(Enemyhealth<=0)
+        {
+            Die();
         }
     }
 
+    public void DamageCollectedByEnemy(int damage)
+    {
+        if (Enemyhealth <= 0)
+        {
+            return;
+        }
+        Enemyhealth -= damage;
+    }
+
+    private void Die()
+    {
+        Debug.Log(this.transform.name + "died");
+    }
+
+    private void SetActiveChild()
+    {
+        // Check which child is active by checking visibility or GameObject active status
+        if (circleChild.gameObject.activeSelf)
+        {
+            currentActiveChild = circleChild; // Set active to circle
+        }
+        else if (squareChild.gameObject.activeSelf)
+        {
+            currentActiveChild = squareChild; // Set active to square
+        }
+        else if (triangleChild.gameObject.activeSelf)
+        {
+            currentActiveChild = triangleChild; // Set active to triangle
+        }
+    }
 
     private void OnDrawGizmosSelected()
     {
@@ -76,11 +118,8 @@ public class Enemy : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, SeeingEnemy);
 
-        if (DetectPoint == null)
-        {
-            return;
-        }
+        // Draw the attack range in the scene view
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(DetectPoint.position, Vector2.down * Distance);
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }
