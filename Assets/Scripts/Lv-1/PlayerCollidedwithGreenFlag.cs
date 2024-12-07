@@ -19,9 +19,6 @@ public class PlayerCollidedWithGreenFlag : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Time.timeScale = 0f;
-            LevelCompleted_Panel.SetActive(true);
-
             if (DataManager.Instance != null)
             {
                 DataManager.Instance.AddCoins(20);
@@ -31,6 +28,9 @@ public class PlayerCollidedWithGreenFlag : MonoBehaviour
             {
                 Debug.LogWarning("DataManager.Instance is null. Ensure it is initialized in the Main Menu.");
             }
+
+            Time.timeScale = 0f;
+            LevelCompleted_Panel.SetActive(true);
 
             Debug.Log("Player Wins");
         }

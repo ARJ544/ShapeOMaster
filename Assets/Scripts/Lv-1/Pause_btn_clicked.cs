@@ -54,4 +54,9 @@ public class Pause_btn_clicked : MonoBehaviour
         Home_btn_clicked_Panel.SetActive(false);
     }
 
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
 }

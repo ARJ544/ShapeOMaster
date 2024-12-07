@@ -7,7 +7,6 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        //PlayerPrefs.DeleteAll();
         if (Instance == null)
         {
             Instance = this;
@@ -19,6 +18,26 @@ public class Enemy : MonoBehaviour
             Debug.LogWarning("Multiple Enemy.cs instances detected. Destroying duplicate.");
             Destroy(gameObject);
         }
+        if (circleChild == null)
+        {
+            var circleObj = GameObject.Find("Circle_player_2d");
+            if (circleObj != null) circleChild = circleObj.transform;
+            else Debug.LogError("Circle_player_2d not found!");
+        }
+
+        if (squareChild == null)
+        {
+            var squareObj = GameObject.Find("Square_player_2d");
+            if (squareObj != null) squareChild = squareObj.transform;
+            else Debug.LogError("Square_player_2d not found!");
+        }
+
+        if (triangleChild == null)
+        {
+            var triangleObj = GameObject.Find("Triangle_player_2d");
+            if (triangleObj != null) triangleChild = triangleObj.transform;
+            else Debug.LogError("Triangle_player_2d not found!");
+        }
 
     }
 
@@ -27,13 +46,13 @@ public class Enemy : MonoBehaviour
 
     public Animator EnemyAnimator; // Reference to the enemy's Animator
 
-    public Transform Playere; // Player's Transform (Parent)
+    //public Transform Playere; // Player's Transform (Parent)
     public Transform enemy; // Enemy's Transform
     public float SeeingEnemy = 28f; // Detection range
     public LayerMask attackLayer; // Layer to detect the player
     public float Speed = 3f; // Movement speed
     public float attackRange = 6f; // Range to trigger attack animation
-    private bool isChasingPlayer = false; // Track if the enemy is chasing the player
+    public bool isChasingPlayer = false; // Track if the enemy is chasing the player
 
     // References to player's child objects (circle, square, and triangle)
     public Transform circleChild;
@@ -56,7 +75,7 @@ public class Enemy : MonoBehaviour
             Debug.Log("Player detected! Starting chase...");
         }
 
-        if (isChasingPlayer)
+        if (isChasingPlayer && currentActiveChild != null)
         {
             // Use the active child's position for chasing logic
             Vector2 playerPosition = currentActiveChild.position;
@@ -64,15 +83,15 @@ public class Enemy : MonoBehaviour
             // Calculate the distance between the player and the enemy
             float distanceToPlayer = Vector2.Distance(playerPosition, enemy.position);
 
-            
+
 
 
             if (distanceToPlayer <= attackRange)
             {
                 // Bool attack animation
-                EnemyAnimator.SetBool("Attack",true);
+                EnemyAnimator.SetBool("Attack", true);
                 Debug.Log("Enemy is attacking!");
-           
+
             }
             else
             {
@@ -98,8 +117,12 @@ public class Enemy : MonoBehaviour
                 enemy.eulerAngles = new Vector3(0f, 0f, 0f); // Face left
             }
         }
+        else if (isChasingPlayer && currentActiveChild == null)
+        {
+            Debug.LogWarning("Active child is null. Cannot chase player.");
+        }
 
-        if(Enemyhealth<=0)
+        if (Enemyhealth <= 0)
         {
             Die();
         }
@@ -127,22 +150,28 @@ public class Enemy : MonoBehaviour
         Destroy(enemyreal);
     }
 
-    private void SetActiveChild()
+    public void SetActiveChild()
     {
-        // Check which child is active by checking visibility or GameObject active status
-        if (circleChild.gameObject.activeSelf)
+        // Validate objects before accessing their properties
+        if (circleChild != null && circleChild.gameObject.activeSelf)
         {
             currentActiveChild = circleChild; // Set active to circle
         }
-        else if (squareChild.gameObject.activeSelf)
+        else if (squareChild != null && squareChild.gameObject.activeSelf)
         {
             currentActiveChild = squareChild; // Set active to square
         }
-        else if (triangleChild.gameObject.activeSelf)
+        else if (triangleChild != null && triangleChild.gameObject.activeSelf)
         {
             currentActiveChild = triangleChild; // Set active to triangle
         }
+        else
+        {
+            currentActiveChild = null; // No active child
+            Debug.LogWarning("No active child found. Ensure player objects are initialized.");
+        }
     }
+
 
     private void OnDrawGizmosSelected()
     {

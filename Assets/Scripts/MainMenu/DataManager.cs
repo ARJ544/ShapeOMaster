@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
-    public static DataManager Instance { get; private set; } // Singleton instance
+    public static DataManager Instance; /*{ get; private set; }*/ // Singleton instance
 
     [Header(" Data ")]
     private int coins = 100;
@@ -125,8 +125,4 @@ public class DataManager : MonoBehaviour
         // Update UI
         MainMenuButtonManager.Instance.UpdateGemsUI(gems);
     }
-
-
-
-
 }

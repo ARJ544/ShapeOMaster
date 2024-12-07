@@ -28,8 +28,17 @@ public class PlayerCollidedWithRedZone : MonoBehaviour
 
     public void Retrybtn()
     {
+        
+        //Enemy.Instance.Enemyhealth = 3;
+        //Enemy.Instance.isChasingPlayer = false;
+
+        // Reset currentActiveChild to prevent invalid references
+        //Enemy.Instance.SetActiveChild();
+
+        // Reload the scene
         SceneManager.LoadScene("Lv-1");
     }
+
 
     public void returnToHome()
     {

@@ -21,4 +21,9 @@ public class SettingsPanel_btn_manager : MonoBehaviour
         MainMenuButtonManager.Instance.hideGO(MainMenuButtonManager.Instance.settings_panel);
         MainMenuButtonManager.Instance.showGO(MainMenuButtonManager.Instance.Main_menu);
     }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }

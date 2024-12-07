@@ -1,14 +1,15 @@
 using UnityEngine;
 using System;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class MainMenuButtonManager : MonoBehaviour
 {
     public static MainMenuButtonManager Instance;
 
     [Header(" Menu Elements ")]
-    [SerializeField] private TextMeshProUGUI coins;
-    [SerializeField] private TextMeshProUGUI coins2;
+    [SerializeField] private TextMeshProUGUI coins;//on main menu
+    [SerializeField] private TextMeshProUGUI coins2;//on shop
     [SerializeField] private TextMeshProUGUI gems;
     [SerializeField] private TextMeshProUGUI gems2;
 
@@ -19,8 +20,9 @@ public class MainMenuButtonManager : MonoBehaviour
     public GameObject shop_panel;
     public GameObject settings_panel;
 
-    void Awake()
+    private void Awake()
     {
+
         if (Instance == null)
         {
             Instance = this;

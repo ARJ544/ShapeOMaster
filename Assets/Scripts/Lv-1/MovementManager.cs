@@ -1,8 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Lv1_btn_manager : MonoBehaviour
+public class MovementManager : MonoBehaviour
 {
+    [Header("Player Health")]
+    [SerializeField] public int circle_health = 5;
+    [SerializeField] public int square_health = 10;
+    [SerializeField] public int triangle_health = 5;
+
     [Header("Button")]
     [SerializeField] public Button shootBtn;
 
@@ -10,7 +15,7 @@ public class Lv1_btn_manager : MonoBehaviour
     [SerializeField] public GameObject circle;
     [SerializeField] public GameObject triangle;
     [SerializeField] public GameObject square;
-    [SerializeField] private GameObject currentActiveSprite;
+    [SerializeField] public GameObject currentActiveSprite;
 
     [Header("Animator")]
     [SerializeField] public Animator circle_animator;
@@ -25,7 +30,7 @@ public class Lv1_btn_manager : MonoBehaviour
     [SerializeField] private Rigidbody2D currentActiveRb;
 
     [Header("Float")]
-    [SerializeField] public float jumpvalue = 7f;
+    [SerializeField] public float jumpvalue = 10f;
     [SerializeField] public float circleSpeed = 25f;
     [SerializeField] public float triangleSpeed = 15f;
     [SerializeField] public float squareSpeed = 10f;
@@ -36,8 +41,6 @@ public class Lv1_btn_manager : MonoBehaviour
     [SerializeField] public bool currentPlayerIsOnGround = true;
     [SerializeField] public bool currentPlayerIsFacingRight = true;
 
-    
-
     void Start()
     {
         ActivateSprite(circle, circleSpeed);
@@ -46,7 +49,6 @@ public class Lv1_btn_manager : MonoBehaviour
         circle_rb = circle.GetComponent<Rigidbody2D>();
         triangle_rb = triangle.GetComponent<Rigidbody2D>();
         square_rb = square.GetComponent<Rigidbody2D>();
-
 
         // Set the initial Rigidbody2D reference to the active sprite's Rigidbody2D
         currentActiveRb = circle_rb;
@@ -76,28 +78,40 @@ public class Lv1_btn_manager : MonoBehaviour
 
         MoveAllSprites(move);
 
-        //Running Animation
+        // Running Animation
         if (Mathf.Abs(move) > 0.1f)
         {
-            currentActiveSprite_animator.SetFloat("Speed", 1f);//Animation is playing
+            currentActiveSprite_animator.SetFloat("Speed", 1f); // Animation is playing
 
             Transform parentTransform = currentActiveSprite.transform;  // Replace 'parentGameObject' with your GameObject
             foreach (Transform child in parentTransform)
             {
-                
-                child.gameObject.SetActive(false);  
+                child.gameObject.SetActive(false);
             }
         }
         else
         {
-            currentActiveSprite_animator.SetFloat("Speed", 0f);//Animation stops
+            currentActiveSprite_animator.SetFloat("Speed", 0f); // Animation stops
 
             Transform parentTransform = currentActiveSprite.transform;  // Replace 'parentGameObject' with your GameObject
             foreach (Transform child in parentTransform)
             {
-
                 child.gameObject.SetActive(true);
             }
+        }
+
+        // Check health for each shape and call Die if any health is zero
+        if (circle_health <= 0 && currentActiveSprite == circle)
+        {
+            Die();
+        }
+        if (square_health <= 0 && currentActiveSprite == square)
+        {
+            Die();
+        }
+        if (triangle_health <= 0 && currentActiveSprite == triangle)
+        {
+            Die();
         }
     }
 
@@ -111,9 +125,6 @@ public class Lv1_btn_manager : MonoBehaviour
         triangle.transform.position = new Vector3(currentXPosition + moveDirection * currentSpeed * Time.deltaTime, triangle.transform.position.y, triangle.transform.position.z);
         square.transform.position = new Vector3(currentXPosition + moveDirection * currentSpeed * Time.deltaTime, square.transform.position.y, square.transform.position.z);
     }
-
-
-
 
     private void FixedUpdate()
     {
@@ -141,7 +152,6 @@ public class Lv1_btn_manager : MonoBehaviour
             currentPlayerIsFacingRight = !currentPlayerIsFacingRight;
         }
     }
-
 
     // Function to activate a specific sprite and set its speed
     public void ActivateSprite(GameObject spriteToActivate, float speed)
@@ -214,11 +224,83 @@ public class Lv1_btn_manager : MonoBehaviour
         if (currentPlayerIsOnGround)
         {
             // Access current active Rigidbody2D velocity and apply jump force
-            Vector2 velocity = currentActiveRb.linearVelocity;
+            Vector2 velocity = currentActiveRb.velocity;
             velocity.y = jumpvalue; // Set the Y velocity to simulate jumping
-            currentActiveRb.linearVelocity = velocity;
+            currentActiveRb.velocity = velocity;
 
             //currentPlayerIsOnGround = false;
+        }
+    }
+
+    public void DamageCollectedByCircle(int damage)
+    {
+        if (circle_health <= 0)
+        {
+            return;
+        }
+        circle_health -= damage;
+
+        // Check if health is zero or less
+        if (circle_health <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void DamageCollectedBySquare(int damage)
+    {
+        if (square_health <= 0)
+        {
+            return;
+        }
+        square_health -= damage;
+
+        // Check if health is zero or less
+        if (square_health <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void DamageCollectedByTriangle(int damage)
+    {
+        if (triangle_health <= 0)
+        {
+            return;
+        }
+        triangle_health -= damage;
+
+        // Check if health is zero or less
+        if (triangle_health <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        Debug.Log(currentActiveSprite.transform.name + " died");
+
+        // Disable the current active sprite
+        currentActiveSprite.SetActive(false);
+
+        // Switch to another sprite based on remaining health
+        if (triangle_health > 0)
+        {
+            ActivateTriangle(); // Switch to triangle
+        }
+        else if (square_health > 0)
+        {
+            ActivateSquare(); // Switch to square
+        }
+        else if (circle_health > 0)
+        {
+            ActivateCircle(); // Switch to circle
+        }
+        else
+        {
+            Debug.Log("Game Over! All shapes are dead.");
+            // Handle game over logic (e.g., restart, show game over screen, etc.)
         }
     }
 
@@ -239,5 +321,4 @@ public class Lv1_btn_manager : MonoBehaviour
             Debug.Log("Not on Ground");
         }
     }
-
 }
