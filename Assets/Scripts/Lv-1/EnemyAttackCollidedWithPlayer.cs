@@ -1,10 +1,13 @@
 using UnityEngine;
+using System;
 
 public class EnemyAttackCollidedWithPlayer : MonoBehaviour
 {
     public Transform enemyAttackingPoint;
     public float enemyAttackingPoint_Radius = 1f;
     public LayerMask attackLayer;
+
+    //public HealthBarCircle healthBarCircle;
 
     // Reference to MovementManager
     public MovementManager movementManager;
@@ -13,8 +16,9 @@ public class EnemyAttackCollidedWithPlayer : MonoBehaviour
     {
         if (movementManager == null)
         {
-            movementManager = FindObjectOfType<MovementManager>(); // If not set in Inspector, try to find it
+            movementManager = FindFirstObjectByType<MovementManager>(); // If not set in Inspector, try to find it
         }
+        
     }
 
     void Update()

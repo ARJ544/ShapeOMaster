@@ -1,4 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
+//using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MovementManager : MonoBehaviour
@@ -41,8 +45,19 @@ public class MovementManager : MonoBehaviour
     [SerializeField] public bool currentPlayerIsOnGround = true;
     [SerializeField] public bool currentPlayerIsFacingRight = true;
 
+    [Header("Panel")]
+    [SerializeField] public GameObject GameOverPanel;
+
+    public HealthBarCircle healthBarCircle;
+    public HealthBarSquare healthBarSquare;
+    public HealthBarTriangle healthBarTriangle;
+
     void Start()
     {
+        Time.timeScale = 1f;
+        GameOverPanel.SetActive(false);
+        healthBarCircle.SetMaxHealth(circle_health);
+
         ActivateSprite(circle, circleSpeed);
 
         // Get Rigidbody2D components for each sprite
@@ -154,6 +169,7 @@ public class MovementManager : MonoBehaviour
     }
 
     // Function to activate a specific sprite and set its speed
+    // Function to activate a specific sprite and set its speed
     public void ActivateSprite(GameObject spriteToActivate, float speed)
     {
         if (circle == null || triangle == null || square == null)
@@ -181,26 +197,52 @@ public class MovementManager : MonoBehaviour
         currentActiveSprite = spriteToActivate;
         currentSpeed = speed;
 
-        // Update the current active Rigidbody2D reference based on the active sprite
+        // Update the current active Rigidbody2D reference and animator based on the active sprite
         if (spriteToActivate == circle)
         {
             currentActiveRb = circle_rb;
             currentActiveSprite_animator = circle_animator;
             shootBtn.interactable = false;
+
+            // Activate Circle health bar and deactivate others
+            healthBarCircle.gameObject.SetActive(true);
+            healthBarTriangle.gameObject.SetActive(false);
+            healthBarSquare.gameObject.SetActive(false);
+
+            // Update health bar
+            healthBarCircle.SetHealth(circle_health);
         }
         else if (spriteToActivate == triangle)
         {
             currentActiveRb = triangle_rb;
             currentActiveSprite_animator = triangle_animator;
             shootBtn.interactable = true;
+
+            // Activate Triangle health bar and deactivate others
+            healthBarTriangle.gameObject.SetActive(true);
+            healthBarCircle.gameObject.SetActive(false);
+            healthBarSquare.gameObject.SetActive(false);
+
+            // Update health bar
+            healthBarTriangle.SetHealth(triangle_health);
         }
         else if (spriteToActivate == square)
         {
             currentActiveRb = square_rb;
             currentActiveSprite_animator = square_animator;
             shootBtn.interactable = false;
+
+            // Activate Square health bar and deactivate others
+            healthBarSquare.gameObject.SetActive(true);
+            healthBarCircle.gameObject.SetActive(false);
+            healthBarTriangle.gameObject.SetActive(false);
+
+            // Update health bar
+            healthBarSquare.SetHealth(square_health);
         }
     }
+
+
 
     // Example methods to switch sprites with respective speeds
     public void ActivateCircle()
@@ -224,9 +266,9 @@ public class MovementManager : MonoBehaviour
         if (currentPlayerIsOnGround)
         {
             // Access current active Rigidbody2D velocity and apply jump force
-            Vector2 velocity = currentActiveRb.velocity;
+            Vector2 velocity = currentActiveRb.linearVelocity;
             velocity.y = jumpvalue; // Set the Y velocity to simulate jumping
-            currentActiveRb.velocity = velocity;
+            currentActiveRb.linearVelocity = velocity;
 
             //currentPlayerIsOnGround = false;
         }
@@ -239,6 +281,7 @@ public class MovementManager : MonoBehaviour
             return;
         }
         circle_health -= damage;
+        healthBarCircle.SetHealth(circle_health);
 
         // Check if health is zero or less
         if (circle_health <= 0)
@@ -254,6 +297,7 @@ public class MovementManager : MonoBehaviour
             return;
         }
         square_health -= damage;
+        healthBarSquare.SetHealth(square_health);
 
         // Check if health is zero or less
         if (square_health <= 0)
@@ -269,6 +313,7 @@ public class MovementManager : MonoBehaviour
             return;
         }
         triangle_health -= damage;
+        healthBarTriangle.SetHealth(triangle_health);
 
         // Check if health is zero or less
         if (triangle_health <= 0)
@@ -288,21 +333,26 @@ public class MovementManager : MonoBehaviour
         if (triangle_health > 0)
         {
             ActivateTriangle(); // Switch to triangle
+            healthBarTriangle.SetHealth(triangle_health);
         }
         else if (square_health > 0)
         {
             ActivateSquare(); // Switch to square
+            healthBarSquare.SetHealth(square_health);
         }
         else if (circle_health > 0)
         {
             ActivateCircle(); // Switch to circle
+            healthBarCircle.SetHealth(circle_health);
         }
         else
         {
             Debug.Log("Game Over! All shapes are dead.");
-            // Handle game over logic (e.g., restart, show game over screen, etc.)
+            Time.timeScale = 0f;
+            GameOverPanel.SetActive(true);
         }
     }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
