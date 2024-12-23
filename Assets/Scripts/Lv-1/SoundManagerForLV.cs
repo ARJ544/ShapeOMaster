@@ -1,11 +1,17 @@
 using UnityEngine;
-using UnityEngine.UI;  // Make sure you include this for the Image component
+using UnityEngine.UI;
 
 public class SoundManagerForLV : MonoBehaviour
 {
-    public Image whenMute_or_crossline_lv;  // Reference to the Image that will show mute/crossline icon
-    private bool isMuted_lv = false;  // Renamed isMuted to isMuted_lv
-    private const string MuteKey_lv = "isMuted_lv"; // Renamed MuteKey to MuteKey_lv
+    public Image whenMute_or_crossline_lv;
+    private bool isMuted_lv = false;
+    private const string MuteKey_lv = "isMuted_lv"; 
+
+    public AudioSource backgroundMusic;
+    public AudioSource enemyAttackSound;
+    public AudioSource playerShootSound;
+    public AudioSource winSound;
+    public AudioSource loseSound;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +30,13 @@ public class SoundManagerForLV : MonoBehaviour
 
         // Log the initial state
         Debug.Log(isMuted_lv ? "Sound is muted." : "Sound is unmuted.");
+
+        // Start playing background music if set and not muted
+        if (backgroundMusic != null && !isMuted_lv)
+        {
+            backgroundMusic.loop = true;
+            backgroundMusic.Play();
+        }
     }
 
     // Method to mute/unmute all sounds in the game
@@ -45,5 +58,65 @@ public class SoundManagerForLV : MonoBehaviour
 
         // Save PlayerPrefs to make sure the change is persisted
         PlayerPrefs.Save();
+
+        // Stop or play background music based on mute state
+        if (backgroundMusic != null)
+        {
+            if (isMuted_lv)
+                backgroundMusic.Pause();
+            else
+                backgroundMusic.Play();
+        }
+    }
+
+    public void PlayEnemyAttackSound()
+    {
+        if (enemyAttackSound != null && !isMuted_lv)
+            enemyAttackSound.Play();
+    }
+
+    public void PlayPlayerShootSound()
+    {
+        if (playerShootSound != null && !isMuted_lv)
+        {
+            Debug.Log("ShootisPlaying");
+            playerShootSound.Play();
+        }
+            
+        else
+        {
+            Debug.LogWarning("Player Shoot Sound is not assigned.");
+        }
+    }
+
+    public void PlayWinSound()
+    {
+        if (winSound != null && !isMuted_lv)
+        {
+            backgroundMusic.Stop();
+            winSound.Play();
+            Debug.Log("winisPlaying");
+        }
+            
+        else
+        {
+            Debug.LogWarning("Win Sound is not assigned.");
+        }
+    }
+
+    public void PlayLoseSound()
+    {
+        if (loseSound != null && !isMuted_lv)
+        {
+            backgroundMusic.Stop();
+            loseSound.Play();
+            Debug.Log("LoseSoudisPlaying");
+            
+        }
+            
+        else
+        {
+            Debug.LogWarning("Lose Sound is not assigned.");
+        }
     }
 }

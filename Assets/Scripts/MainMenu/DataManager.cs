@@ -84,20 +84,20 @@ public class DataManager : MonoBehaviour
         MainMenuButtonManager.Instance.UpdateCoinsUI(coins);
     }
 
-    public void SpendCoins(int amount)
+    public bool SpendCoins(int amount)
     {
-        if (coins < amount)
+        if (coins >= amount)
         {
-            Debug.LogWarning("Not enough coins to spend!");
-            return; // Exit early if there aren't enough coins
+            coins -= amount; // Deduct the coins
+            SaveData();      // Save updated value
+            MainMenuButtonManager.Instance.UpdateCoinsUI(coins); // Update UI
+            return true;     // Indicate success
         }
 
-        coins -= amount; // Decrease coins
-        SaveData();      // Save updated value
-
-        // Update UI
-        MainMenuButtonManager.Instance.UpdateCoinsUI(coins);
+        Debug.LogWarning("Not enough coins to spend!");
+        return false;        // Indicate failure
     }
+
 
 
 

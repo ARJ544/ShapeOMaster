@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class MovementManager : MonoBehaviour
 {
+    public Enemy enemy;
+
     [Header("Player Health")]
     [SerializeField] public int circle_health = 5;
     [SerializeField] public int square_health = 10;
@@ -16,6 +18,8 @@ public class MovementManager : MonoBehaviour
     [SerializeField] public Button shootBtn;
 
     [Header("Game Objects")]
+    [SerializeField] public GameObject PlayerGameObject;
+    [SerializeField] public GameObject EnemyGameObject;
     [SerializeField] public GameObject circle;
     [SerializeField] public GameObject triangle;
     [SerializeField] public GameObject square;
@@ -348,8 +352,18 @@ public class MovementManager : MonoBehaviour
         else
         {
             Debug.Log("Game Over! All shapes are dead.");
+            
+            SoundManagerForLV soundManager = FindAnyObjectByType<SoundManagerForLV>();
+            if (soundManager != null)
+            {
+                soundManager.PlayLoseSound();
+            }
             Time.timeScale = 0f;
             GameOverPanel.SetActive(true);
+            Destroy(EnemyGameObject);
+            Destroy(PlayerGameObject);
+            Destroy(this);
+            Debug.Log("movement.cs script destroyed.");
         }
     }
 

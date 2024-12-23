@@ -140,6 +140,8 @@ public class Enemy : MonoBehaviour
     private void Die()
     {
         StartCoroutine(DieAfterAnimation());
+        
+        Debug.Log("Enemy.cs script destroyed.");
     }
 
     private IEnumerator DieAfterAnimation()
@@ -148,6 +150,7 @@ public class Enemy : MonoBehaviour
 
         yield return new WaitForSeconds(1.301f);
         Destroy(enemyreal);
+        Destroy(this);
     }
 
     public void SetActiveChild()

@@ -54,6 +54,12 @@ public class EnemyAttackCollidedWithPlayer : MonoBehaviour
                 // Apply damage to the triangle
                 movementManager.DamageCollectedByTriangle(1); // You can adjust the damage value here
             }
+
+            SoundManagerForLV soundManager = FindAnyObjectByType<SoundManagerForLV>();
+            if (soundManager != null)
+            {
+                soundManager.PlayEnemyAttackSound();
+            }
         }
     }
 

@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,6 +34,9 @@ public class GunShoot : MonoBehaviour
 
     public void Shoot()
     {
+        SoundManagerForLV soundManager = FindAnyObjectByType<SoundManagerForLV>();
+        soundManager.PlayPlayerShootSound();
+
         if (!canShoot) return;
 
         canShoot = false; // Block further shooting

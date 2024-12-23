@@ -3,6 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerCollidedWithGreenFlag : MonoBehaviour
 {
+    public MovementManager movementManager;
+    public Enemy enemy;
+
     public GameObject LevelCompleted_Panel;
     public GameObject EnemiesNotDestroyed_Panel;
 
@@ -46,6 +49,12 @@ public class PlayerCollidedWithGreenFlag : MonoBehaviour
 
             // Display the Level Completed panel and pause the game
             Time.timeScale = 0f;
+            SoundManagerForLV soundManager = FindAnyObjectByType<SoundManagerForLV>();
+            if (soundManager != null)
+            {
+                soundManager.PlayWinSound();
+            }
+
             LevelCompleted_Panel.SetActive(true);
 
             Debug.Log("Player Wins");
@@ -59,16 +68,32 @@ public class PlayerCollidedWithGreenFlag : MonoBehaviour
 
     public void Retrybtn()
     {
+        //if (movementManager != null) Destroy(movementManager);
+        //if (enemy != null) Destroy(enemy);
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void returnToHome()
     {
+        //if (movementManager != null) Destroy(movementManager);
+        //if (enemy != null) Destroy(enemy);
+
         SceneManager.LoadScene("Main_Menu");
     }
 
+
     public void Nextlevel()
     {
-        SceneManager.LoadScene("Lv-2");
+        int nextLevelIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        if (nextLevelIndex < SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene(nextLevelIndex);
+        }
+        else
+        {
+            Debug.LogWarning("No more levels to load.");
+        }
     }
+
 }

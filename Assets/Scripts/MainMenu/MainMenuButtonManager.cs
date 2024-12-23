@@ -10,6 +10,7 @@ public class MainMenuButtonManager : MonoBehaviour
     [Header(" Menu Elements ")]
     [SerializeField] private TextMeshProUGUI coins;//on main menu
     [SerializeField] private TextMeshProUGUI coins2;//on shop
+    [SerializeField] private TextMeshProUGUI coins3;//on Weapon
     [SerializeField] private TextMeshProUGUI gems;
     [SerializeField] private TextMeshProUGUI gems2;
 
@@ -35,10 +36,11 @@ public class MainMenuButtonManager : MonoBehaviour
 
     public void UpdateCoinsUI(int newCoinsValue)
     {
-        if (coins != null && coins2 != null)
+        if (coins != null && coins2 != null && coins3 != null)
         {
             coins.text = newCoinsValue.ToString();
             coins2.text = newCoinsValue.ToString();
+            coins3.text = newCoinsValue.ToString();
         }
         else
         {
@@ -66,10 +68,11 @@ public class MainMenuButtonManager : MonoBehaviour
     void Start()
     {
         //DataManager.Instance.LoadData();
-        if (coins != null && gems != null && coins2 != null && gems2 != null)
+        if (coins != null && gems != null && coins2 != null && gems2 != null && coins3 != null)
         {
             coins.text = DataManager.Instance.GetCoins().ToString();
             coins2.text = DataManager.Instance.GetCoins().ToString();
+            coins3.text = DataManager.Instance.GetCoins().ToString();
             gems.text = DataManager.Instance.GetGems().ToString();
             gems2.text = DataManager.Instance.GetGems().ToString();
         }
