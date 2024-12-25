@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class WeaponButton : MonoBehaviour
 {
+    public WeaponManager weaponManager;  // Reference to the WeaponManager
+
     public Button buyButton;
     public Button selectButton;
     public TextMeshProUGUI buttonText;
@@ -60,8 +62,19 @@ public class WeaponButton : MonoBehaviour
             buttonText.text = "SELECTED";
             UpdateButtonState(true);
             SaveWeaponState();  // Save the selection state
+
+            // Equip the selected weapon
+            //WeaponManager weaponManager = FindObjectOfType<WeaponManager>();
+            if (weaponManager != null)
+            {
+                int gunIndex = System.Array.IndexOf(weaponMenu.weaponButtons, this);
+                Debug.Log("Equipping gun index: " + gunIndex); // Debug log
+                weaponManager.EquipGun(gunIndex);
+            }
         }
     }
+
+
 
     public void Deselect()
     {

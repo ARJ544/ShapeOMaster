@@ -6510,6 +6510,7 @@ MonoBehaviour:
   - {fileID: 640404833}
   - {fileID: 1811969159}
   - {fileID: 1379732492}
+  weaponManager: {fileID: 0}
 --- !u!1 &292147151
 GameObject:
   m_ObjectHideFlags: 0
@@ -13212,6 +13213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082504e99373d954e8920ad9b675c6f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponManager: {fileID: 0}
   buyButton: {fileID: 1492023060}
   selectButton: {fileID: 959879999}
   buttonText: {fileID: 348882195}
@@ -13741,6 +13743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082504e99373d954e8920ad9b675c6f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponManager: {fileID: 0}
   buyButton: {fileID: 161349503}
   selectButton: {fileID: 2033781399}
   buttonText: {fileID: 2040858458}
@@ -23810,6 +23813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082504e99373d954e8920ad9b675c6f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponManager: {fileID: 0}
   buyButton: {fileID: 625105480}
   selectButton: {fileID: 1689573323}
   buttonText: {fileID: 2052391416}
@@ -24986,6 +24990,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082504e99373d954e8920ad9b675c6f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponManager: {fileID: 0}
   buyButton: {fileID: 2099097972}
   selectButton: {fileID: 741860775}
   buttonText: {fileID: 1408042425}
@@ -27716,9 +27721,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1378614010}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -847.02515, y: -448.4, z: 0}
-  m_LocalScale: {x: 0.90582186, y: 0.90582186, z: 0.90582186}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -847.02527, y: -448.4001, z: 0}
+  m_LocalScale: {x: 0.90582174, y: 0.90582174, z: 0.90582174}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1957431502}
@@ -27787,8 +27792,8 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 9d53bb8cdf359cf44a6609a04dd8c2e6, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
@@ -27890,6 +27895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082504e99373d954e8920ad9b675c6f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponManager: {fileID: 0}
   buyButton: {fileID: 2021935651}
   selectButton: {fileID: 398241667}
   buttonText: {fileID: 2053274422}
@@ -32090,6 +32096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082504e99373d954e8920ad9b675c6f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponManager: {fileID: 0}
   buyButton: {fileID: 833349958}
   selectButton: {fileID: 864821705}
   buttonText: {fileID: 727794962}
@@ -33909,6 +33916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082504e99373d954e8920ad9b675c6f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponManager: {fileID: 0}
   buyButton: {fileID: 2019768145}
   selectButton: {fileID: 216853462}
   buttonText: {fileID: 286948721}
@@ -37311,6 +37319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082504e99373d954e8920ad9b675c6f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponManager: {fileID: 0}
   buyButton: {fileID: 1422608167}
   selectButton: {fileID: 1077285569}
   buttonText: {fileID: 798950373}
@@ -38738,6 +38747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082504e99373d954e8920ad9b675c6f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponManager: {fileID: 0}
   buyButton: {fileID: 471587774}
   selectButton: {fileID: 1872169272}
   buttonText: {fileID: 785421064}
@@ -42619,6 +42629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082504e99373d954e8920ad9b675c6f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponManager: {fileID: 0}
   buyButton: {fileID: 170246784}
   selectButton: {fileID: 1466221317}
   buttonText: {fileID: 344615071}
