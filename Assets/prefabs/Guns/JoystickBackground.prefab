@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4664044632236753070}
   - component: {fileID: 5863542153805484925}
   - component: {fileID: 5994121730966229071}
+  - component: {fileID: 823930518394648508}
+  - component: {fileID: 6950853877252517257}
   m_Layer: 5
   m_Name: JoystickBackground
   m_TagString: Untagged
@@ -76,6 +78,36 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &823930518394648508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6271536996112562849}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9daee480356d0b48aa302de606b5c97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joystickHandle: {fileID: 6132946173723790217}
+  moveRange: 50
+  inputDirection: {x: 0, y: 0}
+--- !u!114 &6950853877252517257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6271536996112562849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9daee480356d0b48aa302de606b5c97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joystickHandle: {fileID: 6132946173723790217}
+  moveRange: 50
+  inputDirection: {x: 0, y: 0}
 --- !u!1 &7539280624498266266
 GameObject:
   m_ObjectHideFlags: 0

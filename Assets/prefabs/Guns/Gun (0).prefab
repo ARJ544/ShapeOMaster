@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6696276168051679711
 Transform:
   m_ObjectHideFlags: 0
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunTransform: {fileID: 6696276168051679711}
-  joystick: {fileID: 0}
+  joystick: {fileID: 823930518394648508, guid: 85206ee0fa1eaac46a72420e3551b01f, type: 3}
   rotationSpeed: 200
   minRotation: -90
   maxRotation: 90
@@ -120,9 +120,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b2b6e2c5f4bfea4fa3462548d7de35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triangle: {fileID: 0}
+  triangle: {fileID: 8810225497654341348, guid: 553fb35ec3fda384d9dd4c22dc1b6741, type: 3}
   bulletPrefab: {fileID: 139381906924339380, guid: 2acec95fb7361f042b1234d360621f08, type: 3}
-  shootButton: {fileID: 0}
+  shootButton: {fileID: 2619767799534777546, guid: 22e741fc9aac0934b94306b6f7c2d63a, type: 3}
   bulletSpeed: 10
   shootPoint: {fileID: 8433714883522634055}
 --- !u!1 &5111931482129027659
@@ -164,9 +164,9 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5111931482129027659}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a4bea3a016cf63a4286f148874a2e790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 0}
+  bullet: {fileID: 139381906924339380, guid: 2acec95fb7361f042b1234d360621f08, type: 3}

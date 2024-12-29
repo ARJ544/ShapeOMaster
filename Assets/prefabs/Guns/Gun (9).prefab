@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunTransform: {fileID: 8531479571656410722}
-  joystick: {fileID: 0}
+  joystick: {fileID: 823930518394648508, guid: 85206ee0fa1eaac46a72420e3551b01f, type: 3}
   rotationSpeed: 200
   minRotation: -90
   maxRotation: 90
@@ -165,8 +165,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b2b6e2c5f4bfea4fa3462548d7de35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triangle: {fileID: 0}
+  triangle: {fileID: 8810225497654341348, guid: 553fb35ec3fda384d9dd4c22dc1b6741, type: 3}
   bulletPrefab: {fileID: 139381906924339380, guid: 2acec95fb7361f042b1234d360621f08, type: 3}
-  shootButton: {fileID: 0}
+  shootButton: {fileID: 2619767799534777546, guid: 22e741fc9aac0934b94306b6f7c2d63a, type: 3}
   bulletSpeed: 10
   shootPoint: {fileID: 1398779314165006691}

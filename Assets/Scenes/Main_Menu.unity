@@ -12631,7 +12631,6 @@ MonoBehaviour:
   selectButton: {fileID: 959879999}
   buttonText: {fileID: 348882195}
   weaponCost: 3500
-  weaponIndex: 0
   isDefaultWeapon: 0
   weaponMenu: {fileID: 289504334}
 --- !u!1 &641777635
@@ -13161,7 +13160,6 @@ MonoBehaviour:
   selectButton: {fileID: 2033781399}
   buttonText: {fileID: 2040858458}
   weaponCost: 2500
-  weaponIndex: 0
   isDefaultWeapon: 0
   weaponMenu: {fileID: 289504334}
 --- !u!1 &678072942
@@ -22436,7 +22434,6 @@ MonoBehaviour:
   selectButton: {fileID: 1689573323}
   buttonText: {fileID: 2052391416}
   weaponCost: 0
-  weaponIndex: 0
   isDefaultWeapon: 1
   weaponMenu: {fileID: 289504334}
 --- !u!1 &1099746461
@@ -23613,7 +23610,6 @@ MonoBehaviour:
   selectButton: {fileID: 741860775}
   buttonText: {fileID: 1408042425}
   weaponCost: 15
-  weaponIndex: 0
   isDefaultWeapon: 0
   weaponMenu: {fileID: 289504334}
 --- !u!1 &1155896687
@@ -25002,7 +24998,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1245105037
 RectTransform:
   m_ObjectHideFlags: 0
@@ -26518,7 +26514,6 @@ MonoBehaviour:
   selectButton: {fileID: 398241667}
   buttonText: {fileID: 2053274422}
   weaponCost: 5000
-  weaponIndex: 0
   isDefaultWeapon: 0
   weaponMenu: {fileID: 289504334}
 --- !u!1 &1389885580
@@ -30489,7 +30484,6 @@ MonoBehaviour:
   selectButton: {fileID: 864821705}
   buttonText: {fileID: 727794962}
   weaponCost: 10
-  weaponIndex: 0
   isDefaultWeapon: 0
   weaponMenu: {fileID: 289504334}
 --- !u!1 &1548804465
@@ -32309,7 +32303,6 @@ MonoBehaviour:
   selectButton: {fileID: 216853462}
   buttonText: {fileID: 286948721}
   weaponCost: 10
-  weaponIndex: 0
   isDefaultWeapon: 0
   weaponMenu: {fileID: 289504334}
 --- !u!1 &1628089352
@@ -35607,7 +35600,6 @@ MonoBehaviour:
   selectButton: {fileID: 1077285569}
   buttonText: {fileID: 798950373}
   weaponCost: 4000
-  weaponIndex: 0
   isDefaultWeapon: 0
   weaponMenu: {fileID: 289504334}
 --- !u!1 &1817438480
@@ -36930,7 +36922,6 @@ MonoBehaviour:
   selectButton: {fileID: 1872169272}
   buttonText: {fileID: 785421064}
   weaponCost: 20
-  weaponIndex: 0
   isDefaultWeapon: 0
   weaponMenu: {fileID: 289504334}
 --- !u!1 &1895627719
@@ -38345,6 +38336,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1988421134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1988421135}
+  - component: {fileID: 1988421136}
+  m_Layer: 0
+  m_Name: WeaponManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1988421135
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988421134}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1988421136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988421134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 915a78c2e99157945b0c6af1e0b8c365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1992268239
 GameObject:
   m_ObjectHideFlags: 0
@@ -40386,7 +40421,6 @@ MonoBehaviour:
   selectButton: {fileID: 1466221317}
   buttonText: {fileID: 344615071}
   weaponCost: 3000
-  weaponIndex: 0
   isDefaultWeapon: 0
   weaponMenu: {fileID: 289504334}
 --- !u!1 &2075435795
@@ -41706,6 +41740,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1148365974}
     m_Modifications:
+    - target: {fileID: 3067124464679472779, guid: bdf547b2a8ecc3e4185fc28a4e89ba7a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1988421136}
+    - target: {fileID: 3067124464679472779, guid: bdf547b2a8ecc3e4185fc28a4e89ba7a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Selectbtn3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3067124464679472779, guid: bdf547b2a8ecc3e4185fc28a4e89ba7a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: WeaponManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3067124464679472779, guid: bdf547b2a8ecc3e4185fc28a4e89ba7a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5380483185690621203, guid: bdf547b2a8ecc3e4185fc28a4e89ba7a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -41887,6 +41937,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: selected_btn5
       objectReference: {fileID: 0}
+    - target: {fileID: 3244831297919036203, guid: 4c26c21b127f72e43893d5512efdf38a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1988421136}
+    - target: {fileID: 3244831297919036203, guid: 4c26c21b127f72e43893d5512efdf38a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Selectbtn5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3244831297919036203, guid: 4c26c21b127f72e43893d5512efdf38a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: WeaponManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3244831297919036203, guid: 4c26c21b127f72e43893d5512efdf38a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -41900,6 +41966,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2072769131}
     m_Modifications:
+    - target: {fileID: 2967286302585916727, guid: 124cd411cf616f74982681d318fa5a72, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1988421136}
+    - target: {fileID: 2967286302585916727, guid: 124cd411cf616f74982681d318fa5a72, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Selectbtn6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2967286302585916727, guid: 124cd411cf616f74982681d318fa5a72, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: WeaponManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2967286302585916727, guid: 124cd411cf616f74982681d318fa5a72, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3063425185343245723, guid: 124cd411cf616f74982681d318fa5a72, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -42001,6 +42083,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: selected_btn1
       objectReference: {fileID: 0}
+    - target: {fileID: 2253428011049399787, guid: 86404f680cca88d418597e34d3aa50a7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1988421136}
+    - target: {fileID: 2253428011049399787, guid: 86404f680cca88d418597e34d3aa50a7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Selectbtn1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2253428011049399787, guid: 86404f680cca88d418597e34d3aa50a7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: WeaponManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2253428011049399787, guid: 86404f680cca88d418597e34d3aa50a7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2349007306406087243, guid: 86404f680cca88d418597e34d3aa50a7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -42094,6 +42192,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1626132771}
     m_Modifications:
+    - target: {fileID: 1980665209831927079, guid: c16d35fcbd596444da622725c5fe2b19, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1988421136}
+    - target: {fileID: 1980665209831927079, guid: c16d35fcbd596444da622725c5fe2b19, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Selectbtn2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1980665209831927079, guid: c16d35fcbd596444da622725c5fe2b19, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: WeaponManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1980665209831927079, guid: c16d35fcbd596444da622725c5fe2b19, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5496453869617026926, guid: c16d35fcbd596444da622725c5fe2b19, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -42275,6 +42389,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8633320358345694861, guid: 6eeb766fc80c2c64db9ae7ce344529ba, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1988421136}
+    - target: {fileID: 8633320358345694861, guid: 6eeb766fc80c2c64db9ae7ce344529ba, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Selectbtn0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8633320358345694861, guid: 6eeb766fc80c2c64db9ae7ce344529ba, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: WeaponManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8633320358345694861, guid: 6eeb766fc80c2c64db9ae7ce344529ba, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -42288,6 +42418,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1811969156}
     m_Modifications:
+    - target: {fileID: 679608020067317735, guid: b8cda1c1e134c674fa69a7b40cd97c66, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1988421136}
+    - target: {fileID: 679608020067317735, guid: b8cda1c1e134c674fa69a7b40cd97c66, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Selectbtn8
+      objectReference: {fileID: 0}
+    - target: {fileID: 679608020067317735, guid: b8cda1c1e134c674fa69a7b40cd97c66, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: WeaponManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 679608020067317735, guid: b8cda1c1e134c674fa69a7b40cd97c66, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1764918145221967963, guid: b8cda1c1e134c674fa69a7b40cd97c66, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -42465,6 +42611,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2830397530769230415, guid: 42a3cd760c60d93488fb73498cffe831, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1988421136}
+    - target: {fileID: 2830397530769230415, guid: 42a3cd760c60d93488fb73498cffe831, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Selectbtn7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2830397530769230415, guid: 42a3cd760c60d93488fb73498cffe831, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: WeaponManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2830397530769230415, guid: 42a3cd760c60d93488fb73498cffe831, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7566990400913282787, guid: 42a3cd760c60d93488fb73498cffe831, type: 3}
       propertyPath: m_Name
       value: selected_btn7
@@ -42562,6 +42724,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6238533664833080250, guid: 96561c5b4b586714eabf0aa78f2045a9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1988421136}
+    - target: {fileID: 6238533664833080250, guid: 96561c5b4b586714eabf0aa78f2045a9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Selectbtn9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6238533664833080250, guid: 96561c5b4b586714eabf0aa78f2045a9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: WeaponManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6238533664833080250, guid: 96561c5b4b586714eabf0aa78f2045a9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8025536792121311195, guid: 96561c5b4b586714eabf0aa78f2045a9, type: 3}
       propertyPath: m_Name
       value: selected_btn9
@@ -42582,6 +42760,22 @@ PrefabInstance:
     - target: {fileID: 1002724514291442777, guid: 86d12649f78864244a33773f21490f6b, type: 3}
       propertyPath: m_Name
       value: selected_btn4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6137118091203851415, guid: 86d12649f78864244a33773f21490f6b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1988421136}
+    - target: {fileID: 6137118091203851415, guid: 86d12649f78864244a33773f21490f6b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Selectbtn4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6137118091203851415, guid: 86d12649f78864244a33773f21490f6b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: WeaponManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6137118091203851415, guid: 86d12649f78864244a33773f21490f6b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6758117859248598530, guid: 86d12649f78864244a33773f21490f6b, type: 3}
       propertyPath: m_Pivot.x
@@ -42687,3 +42881,4 @@ SceneRoots:
   - {fileID: 2075435796}
   - {fileID: 289504333}
   - {fileID: 2012714439}
+  - {fileID: 1988421135}
