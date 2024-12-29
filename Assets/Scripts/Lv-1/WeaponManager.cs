@@ -1,64 +1,64 @@
-using UnityEngine;
+//using UnityEngine;
 
-public class WeaponManager : MonoBehaviour
-{
-    public static WeaponManager Instance; // Singleton instance
-    public GameObject[] guns;  // List of all available gun prefabs
-    private GameObject currentGun; // Currently equipped gun
-    private int currentGunIndex = -1; // No gun equipped initially
+//public class WeaponManager : MonoBehaviour
+//{
+//    public static WeaponManager Instance;
 
-    public Transform gunHolder; // Parent object to hold equipped guns
+//    public GameObject triangle; // Reference to the triangle
 
-    private void Awake()
-    {
-        // Ensure only one instance of WeaponManager exists across scenes
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject); // Keep this object across scenes
-        }
-        else
-        {
-            Destroy(gameObject); // If another WeaponManager exists, destroy this one
-        }
-    }
+//    private int activeWeaponIndex = 0; // Default weapon index
 
-    public void EquipGun(int gunIndex)
-    {
-        if (gunIndex < 0 || gunIndex >= guns.Length)
-        {
-            Debug.LogError("Invalid gun index.");
-            return;
-        }
+//    private void Awake()
+//    {
+//        if (Instance == null)
+//        {
+//            Instance = this;
+//            DontDestroyOnLoad(gameObject); // Prevent destruction on scene change
+//            Debug.Log("WeaponManager marked as persistent.");
+//        }
+//        else
+//        {
+//            Debug.LogWarning("Multiple WeaponManager instances detected. Destroying duplicate.");
+//            Destroy(gameObject);
+//        }
+//    }
 
-        // Unequip current gun
-        UnequipCurrentGun();
+//    void Start()
+//    {
+//        // Load the active weapon index from PlayerPrefs
+//        activeWeaponIndex = PlayerPrefs.GetInt("ActiveWeaponIndex", 0);
+//        ActivateWeapon(activeWeaponIndex);
+//    }
 
-        // Equip the selected gun
-        currentGunIndex = gunIndex;
+//    // Activates the selected weapon for the triangle by child name
+//    public void ActivateWeapon(int weaponIndex)
+//    {
+//        if (triangle == null)
+//        {
+//            Debug.LogError("Triangle reference is missing!");
+//            return;
+//        }
 
-        // Instantiate gun without setting it under the gunHolder initially
-        GameObject tempGun = Instantiate(guns[gunIndex]);
+//        // Iterate through all child objects of the triangle
+//        for (int i = 0; i < triangle.transform.childCount; i++)
+//        {
+//            GameObject child = triangle.transform.GetChild(i).gameObject;
 
-        // Now set it under the gunHolder
-        tempGun.transform.SetParent(gunHolder);
+//            // Enable the child if its name matches "Gun (X)" (e.g., "Gun (0)", "Gun (1)")
+//            if (child.name == $"Gun ({weaponIndex})")
+//            {
+//                child.SetActive(true);
+//                activeWeaponIndex = weaponIndex;
 
-        // Optionally, reset position and rotation if needed to align the gun correctly
-        tempGun.transform.localPosition = Vector3.zero; // Adjust if needed
-        tempGun.transform.localRotation = Quaternion.identity; // Adjust if needed
-
-        // Now the gun is part of the gunHolder
-        currentGun = tempGun; // Update the reference to the current gun
-        currentGun.SetActive(true); // Make the gun active
-    }
-
-    public void UnequipCurrentGun()
-    {
-        if (currentGun != null)
-        {
-            Destroy(currentGun); // Destroy the current gun
-            currentGun = null; // Reset the current gun reference
-            currentGunIndex = -1; // No gun equipped anymore
-        }
-    }
-}
+//                // Save the selected weapon
+//                PlayerPrefs.SetInt("ActiveWeaponIndex", weaponIndex);
+//                PlayerPrefs.Save();
+//            }
+//            else
+//            {
+//                // Disable all other children
+//                child.SetActive(false);
+//            }
+//        }
+//    }
+//}

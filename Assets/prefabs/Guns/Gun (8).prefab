@@ -63,7 +63,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8994108384651356386
 Transform:
   m_ObjectHideFlags: 0
@@ -165,6 +165,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b2b6e2c5f4bfea4fa3462548d7de35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triangle: {fileID: 0}
   bulletPrefab: {fileID: 139381906924339380, guid: 2acec95fb7361f042b1234d360621f08, type: 3}
-  shootPoint: {fileID: 5561140216689770464}
+  shootButton: {fileID: 0}
   bulletSpeed: 10
+  shootPoint: {fileID: 5561140216689770464}
