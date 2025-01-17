@@ -48,20 +48,17 @@ public class GunShoot : MonoBehaviour
             GameObject BulletIns = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
 
             // Check the scale of the triangle to determine shooting direction
-            Vector2 forceDirection;
+            Vector2 forceDirection = shootPoint.right; // Default direction
 
-            // If triangle's scale on x-axis is greater than 1, it means it's facing right
-            if (triangle.transform.localScale.x > 1)
+            // Check the scale of the triangle's x-axis
+            if (triangle.transform.localScale.x < 0)
             {
-                forceDirection = shootPoint.right;  // Shoot in the right direction
-            }
-            else  // Otherwise, it's facing left
-            {
-                forceDirection = -shootPoint.right; // Shoot in the left direction
+                forceDirection = -shootPoint.right; // Reverse direction if scale is negative
             }
 
             // Apply the force to the bullet in the calculated direction
             BulletIns.GetComponent<Rigidbody2D>().AddForce(forceDirection * bulletSpeed, ForceMode2D.Impulse);
+
 
             // Destroy the bullet after 1 second
             Destroy(BulletIns, 1f);
