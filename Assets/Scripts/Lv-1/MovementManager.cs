@@ -63,6 +63,10 @@ public class MovementManager : MonoBehaviour
         healthBarCircle.SetMaxHealth(circle_health);
 
         ActivateSprite(circle, circleSpeed);
+        square.SetActive(true);
+        triangle.SetActive(true);
+        square.SetActive(false);
+        triangle.SetActive(false);
 
         // Get Rigidbody2D components for each sprite
         circle_rb = circle.GetComponent<Rigidbody2D>();

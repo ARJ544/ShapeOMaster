@@ -1158,8 +1158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff3823264ec71eb4c95f112cfe88cd5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementManager: {fileID: 0}
-  enemy: {fileID: 0}
+  nextLvindex: 1
   LevelCompleted_Panel: {fileID: 780964732}
   EnemiesNotDestroyed_Panel: {fileID: 1715648725}
 --- !u!61 &223544812
@@ -8316,8 +8315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff3823264ec71eb4c95f112cfe88cd5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementManager: {fileID: 0}
-  enemy: {fileID: 0}
+  nextLvindex: 0
   LevelCompleted_Panel: {fileID: 780964732}
   EnemiesNotDestroyed_Panel: {fileID: 1715648725}
 --- !u!1 &1263803061

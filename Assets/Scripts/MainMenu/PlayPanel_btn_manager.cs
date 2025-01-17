@@ -19,10 +19,10 @@ public class PlayPanel_btn_manager : MonoBehaviour
 
     }
 
-    public void Lv1_btn_Clicked()
-    {
-        SceneManager.LoadScene("Lv-1");
-    }
+    //public void Lv1_btn_Clicked()
+    //{
+    //    SceneManager.LoadScene("Lv-1");
+    //}
     //public void Lv2_btn_Clicked()
     //{
     //    SceneManager.LoadScene("Lv-2");

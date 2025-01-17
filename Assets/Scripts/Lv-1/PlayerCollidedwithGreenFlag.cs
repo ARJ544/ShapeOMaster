@@ -3,8 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class PlayerCollidedWithGreenFlag : MonoBehaviour
 {
-    public MovementManager movementManager;
-    public Enemy enemy;
+
+    //public MovementManager movementManager;
+    //public Enemy enemy;
+    public int nextLvindex;
 
     public GameObject LevelCompleted_Panel;
     public GameObject EnemiesNotDestroyed_Panel;
@@ -56,6 +58,9 @@ public class PlayerCollidedWithGreenFlag : MonoBehaviour
             }
 
             LevelCompleted_Panel.SetActive(true);
+            UnlockNewLevel();
+
+            //LevelLockManager.Instance.UnlockNextLevel(nextLvindex);
 
             Debug.Log("Player Wins");
         }
@@ -68,17 +73,12 @@ public class PlayerCollidedWithGreenFlag : MonoBehaviour
 
     public void Retrybtn()
     {
-        //if (movementManager != null) Destroy(movementManager);
-        //if (enemy != null) Destroy(enemy);
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void returnToHome()
     {
-        //if (movementManager != null) Destroy(movementManager);
-        //if (enemy != null) Destroy(enemy);
-
         SceneManager.LoadScene("Main_Menu");
     }
 
@@ -93,6 +93,16 @@ public class PlayerCollidedWithGreenFlag : MonoBehaviour
         else
         {
             Debug.LogWarning("No more levels to load.");
+        }
+    }
+
+    void UnlockNewLevel()
+    {
+        if (SceneManager.GetActiveScene().buildIndex >= PlayerPrefs.GetInt("ReachedIndex"))
+        {
+            PlayerPrefs.SetInt("ReachedIndex", SceneManager.GetActiveScene().buildIndex + 1);
+            PlayerPrefs.SetInt("UnlockedLevel", PlayerPrefs.GetInt("UnlockedLevel", 1) + 1);
+            PlayerPrefs.Save();
         }
     }
 
