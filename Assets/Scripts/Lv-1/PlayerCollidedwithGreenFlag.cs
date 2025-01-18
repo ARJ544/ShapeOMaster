@@ -6,7 +6,7 @@ public class PlayerCollidedWithGreenFlag : MonoBehaviour
 
     //public MovementManager movementManager;
     //public Enemy enemy;
-    public int nextLvindex;
+    //public int nextLvindex;
 
     public GameObject LevelCompleted_Panel;
     public GameObject EnemiesNotDestroyed_Panel;

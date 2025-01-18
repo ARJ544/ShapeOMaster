@@ -12,9 +12,8 @@ public class LevelLockManager : MonoBehaviour
 
     void Awake()
     {
-        
+        int unlockedLevelUnlocked = Mathf.Clamp(PlayerPrefs.GetInt("UnlockedLevel", 1), 1, levelButtons.Length);
 
-        int unlockedLevelUnlocked = PlayerPrefs.GetInt("UnlockedLevel", 1);
         for (int i = 0; i < levelButtons.Length; i++)
         {
             levelButtons[i].interactable = false;

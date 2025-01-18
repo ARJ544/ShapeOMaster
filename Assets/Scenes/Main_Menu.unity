@@ -38804,60 +38804,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1988421134
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1988421135}
-  - component: {fileID: 1988421136}
-  m_Layer: 0
-  m_Name: WeaponManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1988421135
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1988421134}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1988421136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1988421134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 915a78c2e99157945b0c6af1e0b8c365, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gun0: {fileID: 0}
-  gun1: {fileID: 0}
-  gun2: {fileID: 0}
-  gun3: {fileID: 0}
-  gun4: {fileID: 0}
-  gun5: {fileID: 0}
-  gun6: {fileID: 0}
-  gun7: {fileID: 0}
-  gun8: {fileID: 0}
-  gun9: {fileID: 0}
 --- !u!1 &1992268239
 GameObject:
   m_ObjectHideFlags: 0
@@ -39391,60 +39337,6 @@ MonoBehaviour:
   - {fileID: 1606762532}
   lockedSprite: {fileID: 21300000, guid: 97de32d3fb79e0149bb0d316978e53a2, type: 3}
   unlockedSprite: {fileID: 21300000, guid: 544048ae87b17c047b2984152ee0e25d, type: 3}
---- !u!1 &2012714438
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2012714439}
-  - component: {fileID: 2012714440}
-  m_Layer: 0
-  m_Name: SelectButtonManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &2012714439
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2012714438}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2201.3647, y: 422.5629, z: 5746.5835}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2012714440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2012714438}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fed20ffb0cc0aea4dbf59a6b8e39a38f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectBtn0: {fileID: 1689573323}
-  selectBtn1: {fileID: 864821705}
-  selectBtn2: {fileID: 216853462}
-  selectBtn3: {fileID: 741860775}
-  selectBtn4: {fileID: 1872169272}
-  selectBtn5: {fileID: 2033781399}
-  selectBtn6: {fileID: 1466221317}
-  selectBtn7: {fileID: 959879999}
-  selectBtn8: {fileID: 1077285569}
-  selectBtn9: {fileID: 398241667}
 --- !u!1 &2019768143
 GameObject:
   m_ObjectHideFlags: 0
@@ -42297,7 +42189,7 @@ PrefabInstance:
     - target: {fileID: 3067124464679472779, guid: bdf547b2a8ecc3e4185fc28a4e89ba7a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1988421136}
+      objectReference: {fileID: 0}
     - target: {fileID: 3067124464679472779, guid: bdf547b2a8ecc3e4185fc28a4e89ba7a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Selectbtn3
@@ -42494,7 +42386,7 @@ PrefabInstance:
     - target: {fileID: 3244831297919036203, guid: 4c26c21b127f72e43893d5512efdf38a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1988421136}
+      objectReference: {fileID: 0}
     - target: {fileID: 3244831297919036203, guid: 4c26c21b127f72e43893d5512efdf38a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Selectbtn5
@@ -42523,7 +42415,7 @@ PrefabInstance:
     - target: {fileID: 2967286302585916727, guid: 124cd411cf616f74982681d318fa5a72, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1988421136}
+      objectReference: {fileID: 0}
     - target: {fileID: 2967286302585916727, guid: 124cd411cf616f74982681d318fa5a72, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Selectbtn6
@@ -42640,7 +42532,7 @@ PrefabInstance:
     - target: {fileID: 2253428011049399787, guid: 86404f680cca88d418597e34d3aa50a7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1988421136}
+      objectReference: {fileID: 0}
     - target: {fileID: 2253428011049399787, guid: 86404f680cca88d418597e34d3aa50a7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Selectbtn1
@@ -42749,7 +42641,7 @@ PrefabInstance:
     - target: {fileID: 1980665209831927079, guid: c16d35fcbd596444da622725c5fe2b19, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1988421136}
+      objectReference: {fileID: 0}
     - target: {fileID: 1980665209831927079, guid: c16d35fcbd596444da622725c5fe2b19, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Selectbtn2
@@ -42946,7 +42838,7 @@ PrefabInstance:
     - target: {fileID: 8633320358345694861, guid: 6eeb766fc80c2c64db9ae7ce344529ba, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1988421136}
+      objectReference: {fileID: 0}
     - target: {fileID: 8633320358345694861, guid: 6eeb766fc80c2c64db9ae7ce344529ba, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Selectbtn0
@@ -42975,7 +42867,7 @@ PrefabInstance:
     - target: {fileID: 679608020067317735, guid: b8cda1c1e134c674fa69a7b40cd97c66, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1988421136}
+      objectReference: {fileID: 0}
     - target: {fileID: 679608020067317735, guid: b8cda1c1e134c674fa69a7b40cd97c66, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Selectbtn8
@@ -43168,7 +43060,7 @@ PrefabInstance:
     - target: {fileID: 2830397530769230415, guid: 42a3cd760c60d93488fb73498cffe831, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1988421136}
+      objectReference: {fileID: 0}
     - target: {fileID: 2830397530769230415, guid: 42a3cd760c60d93488fb73498cffe831, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Selectbtn7
@@ -43281,7 +43173,7 @@ PrefabInstance:
     - target: {fileID: 6238533664833080250, guid: 96561c5b4b586714eabf0aa78f2045a9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1988421136}
+      objectReference: {fileID: 0}
     - target: {fileID: 6238533664833080250, guid: 96561c5b4b586714eabf0aa78f2045a9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Selectbtn9
@@ -43318,7 +43210,7 @@ PrefabInstance:
     - target: {fileID: 6137118091203851415, guid: 86d12649f78864244a33773f21490f6b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1988421136}
+      objectReference: {fileID: 0}
     - target: {fileID: 6137118091203851415, guid: 86d12649f78864244a33773f21490f6b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Selectbtn4
@@ -43435,5 +43327,3 @@ SceneRoots:
   - {fileID: 2075435796}
   - {fileID: 289504333}
   - {fileID: 2002091719}
-  - {fileID: 2012714439}
-  - {fileID: 1988421135}
