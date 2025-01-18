@@ -11,6 +11,9 @@ public class PlayerCollidedWithGreenFlag : MonoBehaviour
     public GameObject LevelCompleted_Panel;
     public GameObject EnemiesNotDestroyed_Panel;
 
+    public int coinsAmt = 20;
+    public int gemsAmt = 1;
+
     void Start()
     {
         EnemiesNotDestroyed_Panel.SetActive(false);
@@ -24,15 +27,23 @@ public class PlayerCollidedWithGreenFlag : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             // Check if any enemies are left in the scene
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-            if (enemies.Length > 0)
+            GameObject[] enemies1 = GameObject.FindGameObjectsWithTag("Enemy");
+            GameObject[] enemies2 = GameObject.FindGameObjectsWithTag("Enemy2");
+            GameObject[] enemies3 = GameObject.FindGameObjectsWithTag("Enemy3");
+            GameObject[] enemies4 = GameObject.FindGameObjectsWithTag("Enemy4");
+            GameObject[] enemies5 = GameObject.FindGameObjectsWithTag("Enemy5");
+
+            int totalEnemies = enemies1.Length + enemies2.Length + enemies3.Length + enemies4.Length + enemies5.Length;
+
+            // Check if there are any enemies remaining
+            if (totalEnemies > 0)
             {
                 Debug.Log("Enemies are still present. Finish them before completing the level.");
 
                 if (!EnemiesNotDestroyed_Panel.activeSelf)
                 {
                     EnemiesNotDestroyed_Panel.SetActive(true); // Show the panel
-                    Invoke("DeactivateEnemiesPanel", 1f); // Hide it after 2 seconds (or any duration you prefer)
+                    Invoke("DeactivateEnemiesPanel", 1f);
                 }
 
                 return; // Exit the method without proceeding to level completion
@@ -41,8 +52,8 @@ public class PlayerCollidedWithGreenFlag : MonoBehaviour
             // Reward the player if DataManager is available
             if (DataManager.Instance != null)
             {
-                DataManager.Instance.AddCoins(20);
-                DataManager.Instance.AddGems(1);
+                DataManager.Instance.AddCoins(coinsAmt);
+                DataManager.Instance.AddGems(gemsAmt);
             }
             else
             {

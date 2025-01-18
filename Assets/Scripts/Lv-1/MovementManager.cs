@@ -106,7 +106,7 @@ public class MovementManager : MonoBehaviour
         {
             currentActiveSprite_animator.SetFloat("Speed", 1f); // Animation is playing
 
-            Transform parentTransform = currentActiveSprite.transform;  // Replace 'parentGameObject' with your GameObject
+            Transform parentTransform = currentActiveSprite.transform;
             foreach (Transform child in parentTransform)
             {
                 child.gameObject.SetActive(false);
@@ -140,14 +140,16 @@ public class MovementManager : MonoBehaviour
 
     private void MoveAllSprites(float moveDirection)
     {
-        // Get the current X position of the active sprite
-        float currentXPosition = currentActiveSprite.transform.position.x;
+        // Update the position of the active sprite
+        Vector3 newPosition = currentActiveSprite.transform.position + new Vector3(moveDirection * currentSpeed * Time.deltaTime, 0, 0);
+        currentActiveSprite.transform.position = newPosition;
 
-        // Apply the movement to all sprites (circle, square, triangle) while keeping the Y position the same
-        circle.transform.position = new Vector3(currentXPosition + moveDirection * currentSpeed * Time.deltaTime, circle.transform.position.y, circle.transform.position.z);
-        triangle.transform.position = new Vector3(currentXPosition + moveDirection * currentSpeed * Time.deltaTime, triangle.transform.position.y, triangle.transform.position.z);
-        square.transform.position = new Vector3(currentXPosition + moveDirection * currentSpeed * Time.deltaTime, square.transform.position.y, square.transform.position.z);
+        // Set all other sprites to match the active sprite's position
+        circle.transform.position = currentActiveSprite.transform.position;
+        triangle.transform.position = currentActiveSprite.transform.position;
+        square.transform.position = currentActiveSprite.transform.position;
     }
+
 
     private void FixedUpdate()
     {

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -60,6 +61,8 @@ public class Enemy : MonoBehaviour
     public Transform triangleChild;
 
     private Transform currentActiveChild; // The active child of the player (circle, square, or triangle)
+
+    public Button shootBtn;
 
     void Update()
     {
@@ -125,6 +128,7 @@ public class Enemy : MonoBehaviour
         if (Enemyhealth <= 0)
         {
             Die();
+
         }
     }
 
@@ -139,6 +143,7 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
+        shootBtn.interactable = false;
         StartCoroutine(DieAfterAnimation());
         
         Debug.Log("Enemy.cs script destroyed.");
@@ -151,6 +156,13 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(1.301f);
         Destroy(enemyreal);
         Destroy(this);
+
+        if (shootBtn != null)
+        {
+            shootBtn.interactable = true;
+            Debug.Log("Shoot button enabled.");
+        }
+
     }
 
     public void SetActiveChild()

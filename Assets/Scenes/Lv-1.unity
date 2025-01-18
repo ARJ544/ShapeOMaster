@@ -9986,6 +9986,7 @@ MonoBehaviour:
   circleChild: {fileID: 942956523}
   squareChild: {fileID: 427511910}
   triangleChild: {fileID: 932259775}
+  shootBtn: {fileID: 1369229799}
 --- !u!61 &1600685411
 BoxCollider2D:
   m_ObjectHideFlags: 0
